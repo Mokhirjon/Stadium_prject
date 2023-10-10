@@ -4,21 +4,21 @@ from django.shortcuts import render
 from django.shortcuts import render
 from .models import StadiumModel
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .serializers import *
 from config.permissions import AdminPermissionClass, OwnerPermissionClass, BronerPermissionClass
 
 class StadiumListAPIView(generics.ListAPIView):
     queryset = StadiumModel.objects.all()
     serializer_class = StadiumSerializer
-    permission_classes = (IsAuthenticated, AdminPermissionClass | OwnerPermissionClass | BronerPermissionClass)
+    permission_classes = (IsAuthenticatedOrReadOnly, AdminPermissionClass | OwnerPermissionClass | BronerPermissionClass)
 
 class StadiumCreateAPIView(generics.CreateAPIView):
     queryset = StadiumModel.objects.all()
     serializer_class = StadiumSerializer
-    permission_classes = (IsAuthenticated, AdminPermissionClass | OwnerPermissionClass)
+    permission_classes = (IsAuthenticatedOrReadOnly, AdminPermissionClass | OwnerPermissionClass)
 
 class StadiumUpdateAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = StadiumModel.objects.all()
     serializer_class = StadiumSerializer
-    permission_classes = (IsAuthenticated, AdminPermissionClass | OwnerPermissionClass)
+    permission_classes = (IsAuthenticatedOrReadOnly, AdminPermissionClass | OwnerPermissionClass)
