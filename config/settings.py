@@ -33,7 +33,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
+    'bron_stadium',
+    'stadium',
     'account',
     'rest_framework',
     'django.contrib.admin',
